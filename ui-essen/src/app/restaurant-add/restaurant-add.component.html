@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Add Restaurant</h1>
+<div mat-dialog-content>
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Name</ng-template>
+          <mat-form-field class="example-full-width">
+          <input matInput placeholder="Restaurant Name" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Location</ng-template>
+          <input matInput placeholder="Restaurant Location" formControlName="secondCtrl" required>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      Apple3
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button (click)="onNoClick()">No Thanks</button> &nbsp;
+  <button mat-stroked-button color="warn" (click)="onClickChange(data.restaurant)">Change</button>
+</div>

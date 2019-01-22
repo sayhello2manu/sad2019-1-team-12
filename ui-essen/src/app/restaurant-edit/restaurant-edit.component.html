@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Edit Restaurant</h1>
+
+<div mat-dialog-content>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.restaurant.restaurantName" placeholder="Restaurant Name">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.restaurant.restaurantLocation" placeholder="Restaurant Location">
+    </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-stroked-button (click)="onNoClick()">No Thanks</button> &nbsp;
+    <button mat-stroked-button color="warn" (click)="onClickChange(data.restaurant)">Change</button>
+
+</div>
