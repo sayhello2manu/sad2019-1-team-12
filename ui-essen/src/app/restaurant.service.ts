@@ -11,8 +11,8 @@ export class RestaurantService {
   constructor(private http: HttpClient) {
   }
 
-  // public HOSTNAME = '//localhost'
-  public HOSTNAME = '//192.168.178.108'
+  public HOSTNAME = '//localhost'
+  // public HOSTNAME = '//192.168.178.108'
 
   public PORT = '8080'
   public URL = this.HOSTNAME + ':' + this.PORT + '/restaurant/';
@@ -26,7 +26,7 @@ export class RestaurantService {
   }
 
   save(restaurant: RestaurantModel): Observable<RestaurantModel> {
-    console.log("calling Save " + restaurant.restaurantId);
+    // console.log("calling Save " + restaurant.restaurantId);
     let result: Observable<RestaurantModel>;
     if (restaurant.restaurantId != null) {
       console.log("calling service" + restaurant);
@@ -38,7 +38,7 @@ export class RestaurantService {
   }
 
   delete(restaurant: RestaurantModel) {
-    return this.http.delete(this.URL + 'delete/' + restaurant.$restaurantId);
+    return this.http.delete(this.URL + 'delete/' + restaurant.restaurantId);
   }
 }
 

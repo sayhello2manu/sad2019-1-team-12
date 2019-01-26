@@ -29,23 +29,20 @@ export class RestaurantComponent implements OnInit {
       this.restaurants = data;
     });
   }
-
+  
   restaurants: Array<RestaurantModel>;
 
   openDialogEditRestaurant(restaurant: RestaurantModel): void {
-
+    let demo : RestaurantModel = Object.create(restaurant);
     const dialogRef = this.dialog.open(RestaurantEditComponent, {
       width: '250px',
-      data: { restaurant },
+      data: { demo },
       hasBackdrop: true,
 
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.restaurantService.getAllRestaurants().subscribe((data: RestaurantModel[]) => {
-        this.restaurants = data;
-      });
     });
   }
 
@@ -60,9 +57,6 @@ export class RestaurantComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.restaurantService.getAllRestaurants().subscribe((data: RestaurantModel[]) => {
-        this.restaurants = data;
-      });
     });
   }
 }
