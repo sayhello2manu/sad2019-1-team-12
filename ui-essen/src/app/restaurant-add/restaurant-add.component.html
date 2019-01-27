@@ -1,104 +1,74 @@
 <h1 mat-dialog-title>Add Restaurant</h1>
+<mat-divider></mat-divider>
 <div mat-dialog-content>
   <mat-vertical-stepper [linear]="!isLinear" #stepper>
     <mat-step [stepControl]="restaurantBasicDetails">
       <form [formGroup]="restaurantBasicDetails">
         <ng-template matStepLabel>Name</ng-template>
-        <table style="width:100%" class = "mat-app-background">
-          <tr>
-            <td>
-              <mat-form-field>
-                <input matInput placeholder="Restaurant Name" formControlName="restaurantName" required>
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field>
-                <span matPrefix>+49 &nbsp;</span>
-                <input matInput placeholder="Restaurant Contact" formControlName="restaurantContactNo" required>
-              </mat-form-field>
-            </td>
-            <td>
-              <button mat-icon-button matStepperNext matTooltip="Next">
-                <mat-icon svgIcon="downward"></mat-icon>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <mat-form-field>
-                <textarea matInput placeholder="Restaurant Address" formControlName="restaurantAddress" required></textarea>
-              </mat-form-field>
-            </td>
-          </tr>
-        </table>
+        <div class="flex-container">
+          <mat-form-field>
+            <input matInput placeholder="Restaurant Name" formControlName="restaurantName" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Contact No" formControlName="restaurantContactNo" class="contact-number"
+              required>
+            <span matPrefix>+49&nbsp;</span>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput placeholder="Address" formControlName="restaurantAddress" required></textarea>
+          </mat-form-field>
+        </div>
+        <div align="end">
+          <button mat-icon-button matStepperNext matTooltip="Next">
+            <mat-icon svgIcon="downward"></mat-icon>
+          </button>
+        </div>
       </form>
     </mat-step>
+
     <mat-step [stepControl]="restaurantLocationDetails">
       <form [formGroup]="restaurantLocationDetails">
         <ng-template matStepLabel>Location</ng-template>
-        <table style="width:100%">
-          <tr>
-            <td>
-              <mat-form-field>
-                <input matInput placeholder="Restaurant Location" required formControlName="restaurantLocation">
-              </mat-form-field>
-            </td>
-            <td>
-              <button mat-icon-button matStepperPrevious matTooltip="Previous">
-                <mat-icon svgIcon="upward"></mat-icon>
-              </button>
-            </td>
-            <td>
-              <button mat-icon-button matStepperNext matTooltip="Next">
-                <mat-icon svgIcon="downward"></mat-icon>
-              </button>
-            </td>
-          </tr>
-        </table>
-
+        <div class="flex-container">
+          <mat-form-field>
+            <input matInput placeholder="Restaurant Location" required formControlName="restaurantLocation">
+          </mat-form-field>
+        </div>
+        <div align=end>
+          <button mat-icon-button matStepperPrevious matTooltip="Previous">
+            <mat-icon svgIcon="upward"> </mat-icon>
+          </button>
+          <button mat-icon-button matStepperNext matTooltip="Next">
+            <mat-icon svgIcon="downward"></mat-icon>
+          </button>
+        </div>
       </form>
     </mat-step>
 
     <mat-step [stepControl]="restaurantCategoryDetails">
       <form [formGroup]="restaurantCategoryDetails">
         <ng-template matStepLabel>Category and Expense</ng-template>
-        <table style="width:100%">
-          <tr>
-            <td>
-              <mat-form-field>
-                <input matInput placeholder="Restaurant Category" required formControlName="restaurantCategory"
-                  matTooltip="Enter the category and type of restaurant Example : Indian Fine Dine">
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field>
-                <span matPrefix>€ &nbsp;</span>
-                <input matInput placeholder="Restaurant Expense" required formControlName="restaurantExpense"
-                  matTooltip="Average expense for two people">
-              </mat-form-field>
-            </td>
-            <td>
-              <button mat-icon-button matStepperPrevious matTooltip="Previous">
-                <mat-icon svgIcon="upward"></mat-icon>
-              </button>
-            </td>
-          </tr>
-        </table>
-
+        <div class="flex-container">
+        <mat-form-field>
+          <input matInput placeholder="Restaurant Category" required formControlName="restaurantCategory" matTooltip="Enter the category and type of restaurant Example : Indian Fine Dine">
+        </mat-form-field>
+        <mat-form-field>
+          <span matPrefix>€ &nbsp;</span>
+          <input matInput placeholder="Restaurant Expense" required formControlName="restaurantExpense" matTooltip="Average expense for two people">
+        </mat-form-field>
+      </div>
+      <div align = end>
+        <button mat-icon-button matStepperPrevious matTooltip="Previous">
+          <mat-icon svgIcon="upward"></mat-icon>
+        </button>
+      </div>
       </form>
     </mat-step>
 
   </mat-vertical-stepper>
 </div>
-<div mat-dialog-actions>
-  <table style="width:40%">
-    <tr>
-      <td>
-        <button mat-stroked-button (click)="onNoClick()">No Thanks</button>
-      </td>
-      <td>
-        <button mat-stroked-button color="warn" (click)="addRestaurant()" type="submit">Change</button>
-      </td>
-    </tr>
-  </table>
-</div>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>No Thanks</button>
+  <button mat-button (click)="addRestaurant()" type="submit">Change</button>
+</mat-dialog-actions>

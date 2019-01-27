@@ -49,7 +49,7 @@ export class RestaurantComponent implements OnInit {
   openDialogAddRestaurant(restaurant: RestaurantModel): void {
 
     const dialogRef = this.dialog.open(RestaurantAddComponent, {
-      width: '700px',
+      width: '600px',
       data: { restaurant },
       hasBackdrop: true,
 
