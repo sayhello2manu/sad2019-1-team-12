@@ -1,56 +1,48 @@
-<div >
-<mat-toolbar>
-  <span>Restaurant List</span>
-</mat-toolbar>
-
-<mat-card *ngFor="let restaurant of restaurants" class = "card fix-height light-primary-color">
-
-  <mat-card-header>
-    <mat-card-title>{{restaurant.restaurantName}}</mat-card-title>
-    <mat-card-subtitle>{{restaurant.restaurantLocation}}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <div>
-    <table style="width:100%">
-      <tr>
-        <td>
-          Address : {{restaurant.restaurantAddress}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Contact : {{restaurant.restaurantContactNo}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Cuisine and Category : {{restaurant.restaurantCategory}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Expense For Two : € {{restaurant.restaurantExpense}}
-        </td>
-      </tr>
-    
-    </table>
-  </div>
-
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>Review</button>
-    &nbsp; &nbsp; &nbsp; &nbsp;
-    <a mat-icon-button (click)="openDialogEditRestaurant(restaurant)" matTooltip="Edit">
-      <mat-icon svgIcon="edit"></mat-icon>
-    </a>
-    <!-- [routerLink]="['/restaurant/edit', restaurant.restaurantId]" -->
-  </mat-card-actions>
-  <!-- <mat-divider></mat-divider> -->
-</mat-card>
-
 <div>
-  <button mat-icon-button matTooltip="Add Restaurant" (click)="openDialogAddRestaurant(restaurant)" matTooltipPosition="after">
-    <mat-icon svgIcon="add"></mat-icon>
-  </button>
-</div>
+  <mat-toolbar>
+    <span>Restaurant List</span>
+  </mat-toolbar>
+
+  <mat-card *ngFor="let restaurant of restaurants" class="card fix-height light-primary-color">
+
+    <mat-card-header>
+      <mat-card-title>{{restaurant.restaurantName}}</mat-card-title>
+      <mat-card-subtitle>{{restaurant.restaurantLocation}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <mat-list>
+          <mat-list-item>
+            Address : {{restaurant.restaurantAddress}}
+          </mat-list-item>
+          <mat-list-item>
+            Contact : {{restaurant.restaurantContactNo}}
+          </mat-list-item>
+          <mat-list-item>
+            Cuisine and Category : {{restaurant.restaurantCategory}}
+          </mat-list-item>
+          <mat-list-item>
+            Expense For Two : € {{restaurant.restaurantExpense}}
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Review</button>
+      &nbsp; &nbsp; &nbsp; &nbsp;
+      <a mat-icon-button (click)="openDialogEditRestaurant(restaurant)" matTooltip="Edit">
+        <mat-icon svgIcon="edit"></mat-icon>
+      </a>
+      <!-- [routerLink]="['/restaurant/edit', restaurant.restaurantId]" -->
+    </mat-card-actions>
+    <!-- <mat-divider></mat-divider> -->
+  </mat-card>
+
+  <div>
+    <button mat-icon-button matTooltip="Add Restaurant" (click)="openDialogAddRestaurant(restaurant)"
+      matTooltipPosition="after">
+      <mat-icon svgIcon="add"></mat-icon>
+    </button>
+  </div>
 </div>

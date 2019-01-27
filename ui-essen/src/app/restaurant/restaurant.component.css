@@ -1,5 +1,5 @@
 .fix-height{
-    height: 200px;
+    /* height: 350px; */
     width: 85%;
     min-width: 150px;
     margin:1em;
@@ -20,7 +20,7 @@
   }
   
   .mat-list .mat-list-item{
-  color: white;
+  /* color: white; */
   }
   
   .light-primary-color   { 
