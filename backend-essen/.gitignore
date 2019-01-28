@@ -74,3 +74,4 @@ target/
 Idea/
 *.iml
 logs/
+*/META-INF/
