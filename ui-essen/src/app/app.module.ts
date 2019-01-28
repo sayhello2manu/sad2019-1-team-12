@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { MaterialModule } from '../material-module';
 import { RestaurantAddComponent } from './restaurant-add/restaurant-add.component';
+import { RestaurantHomeComponent } from './restaurant-home/restaurant-home.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { RestaurantAddComponent } from './restaurant-add/restaurant-add.componen
     RestaurantComponent,
     RestaurantEditComponent,
     RestaurantAddComponent,
+    RestaurantHomeComponent,
   ],
   entryComponents: [RestaurantEditComponent, RestaurantAddComponent],
   imports: [

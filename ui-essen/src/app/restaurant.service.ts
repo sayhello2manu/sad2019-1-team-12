@@ -40,5 +40,9 @@ export class RestaurantService {
   delete(restaurant: RestaurantModel) {
     return this.http.delete(this.URL + 'delete/' + restaurant.restaurantId);
   }
+
+  getRestaurantLocaions(): Observable<Array<String>> {
+    return this.http.get<Array<String>>(this.URL + 'locations');
+  }
 }
 
