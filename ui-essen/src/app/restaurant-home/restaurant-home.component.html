@@ -1,24 +1,73 @@
-<mat-toolbar>
-  Search For A Restaurant Here
-</mat-toolbar>
-<form class="form">
+<div *ngIf="showSearchBar">
+  <mat-toolbar>
+    Search For A Restaurant Here
+  </mat-toolbar>
   <div class="search-area">
-    <mat-form-field class="full-width">
-      <input matInput placeholder="Enter a keyword" required>
-    </mat-form-field>
-    <mat-form-field class="full-width">
-      <mat-select placeholder="Location" [(ngModel)]="selectedLocation" name="location" required>
-        <mat-option *ngFor="let location of locations" [value]="location">
-          {{location}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <div align="end">
-      <button mat-raised-button color="primary" (click)="onClickSearch()">Search</button>
-    </div>
-    <div> &nbsp;</div>
-    <div align=end>
-      <a routerLink="/restaurant" button mat-button (click)="onClickSearch()"> Click Here To Skip Search</a>
-    </div>
+    <form [formGroup]="searchForm" (ngSubmit)="onClickSearch()" class="form">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Enter a keyword" formControlName="searchString" required>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Location" formControlName="selectedLocation" name="location" required>
+          <mat-option *ngFor="let location of locations" [value]="location">
+            {{location}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div align="end">
+        <button mat-raised-button type="submit" [disabled]="!searchForm.valid" color="primary">Search</button>
+      </div>
+    </form>
   </div>
-</form>
+</div>
+
+<div *ngIf="searchResultsVisible">
+  <mat-toolbar>
+    <span>Restaurant List</span>
+  </mat-toolbar>
+
+  <mat-card *ngFor="let restaurant of restaurants" class="card fix-height light-primary-color">
+
+    <mat-card-header>
+      <mat-card-title>{{restaurant.restaurantName}}</mat-card-title>
+      <mat-card-subtitle>{{restaurant.restaurantLocation}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <mat-list>
+          <mat-list-item>
+            Address : {{restaurant.restaurantAddress}}
+          </mat-list-item>
+          <mat-list-item>
+            Contact : {{restaurant.restaurantContactNo}}
+          </mat-list-item>
+          <mat-list-item>
+            Cuisine and Category : {{restaurant.restaurantCategory}}
+          </mat-list-item>
+          <mat-list-item>
+            Expense For Two : € {{restaurant.restaurantExpense}}
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Review</button>
+      &nbsp; &nbsp; &nbsp; &nbsp;
+      <a mat-icon-button (click)="openDialogEditRestaurant(restaurant)" matTooltip="Edit">
+        <mat-icon svgIcon="edit"></mat-icon>
+      </a>
+    </mat-card-actions>
+  </mat-card>
+
+  <div>
+    <button mat-icon-button matTooltip="Add Restaurant" (click)="openDialogAddRestaurant(restaurant)"
+      matTooltipPosition="after">
+      <mat-icon svgIcon="add"></mat-icon>
+    </button>
+  </div>
+</div>
+
+<div align=end class="search-area form">
+  <a routerLink="/restaurant" button mat-button> Click Here To Skip Search</a>
+</div>
