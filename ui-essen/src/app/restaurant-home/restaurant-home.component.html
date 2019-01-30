@@ -1,4 +1,27 @@
-<div>
+<div *ngIf="showSearchBar">
+  <mat-toolbar>
+    Search For A Restaurant Here
+  </mat-toolbar>
+  <div class="search-area">
+    <form [formGroup]="searchForm" (ngSubmit)="onClickSearch()" class="form">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Enter a keyword" formControlName="searchString" required>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Location" formControlName="selectedLocation" name="location" required>
+          <mat-option *ngFor="let location of locations" [value]="location">
+            {{location}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div align="end">
+        <button mat-raised-button type="submit" [disabled]="!searchForm.valid" color="primary">Search</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="searchResultsVisible">
   <mat-toolbar>
     <span>Restaurant List</span>
   </mat-toolbar>
@@ -43,4 +66,8 @@
       <mat-icon svgIcon="add"></mat-icon>
     </button>
   </div>
+</div>
+
+<div align=end class="search-area form">
+  <a routerLink="/restaurant" button mat-button> Click Here To Skip Search</a>
 </div>

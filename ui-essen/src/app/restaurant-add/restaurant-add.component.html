@@ -1,36 +1,74 @@
 <h1 mat-dialog-title>Add Restaurant</h1>
+<mat-divider></mat-divider>
 <div mat-dialog-content>
-  <mat-horizontal-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-          <ng-template matStepLabel>Name</ng-template>
-          <mat-form-field class="example-full-width">
-          <input matInput placeholder="Restaurant Name" formControlName="firstCtrl" required>
+  <mat-vertical-stepper [linear]="!isLinear" #stepper>
+    <mat-step [stepControl]="restaurantBasicDetails">
+      <form [formGroup]="restaurantBasicDetails">
+        <ng-template matStepLabel>Name</ng-template>
+        <div class="flex-container">
+          <mat-form-field>
+            <input matInput placeholder="Restaurant Name" formControlName="restaurantName" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Contact No" formControlName="restaurantContactNo" class="contact-number"
+              required>
+            <span matPrefix>+49&nbsp;</span>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea matInput placeholder="Address" formControlName="restaurantAddress" required></textarea>
+          </mat-form-field>
+        </div>
+        <div align="end">
+          <button mat-icon-button matStepperNext matTooltip="Next">
+            <mat-icon svgIcon="downward"></mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="restaurantLocationDetails">
+      <form [formGroup]="restaurantLocationDetails">
+        <ng-template matStepLabel>Location</ng-template>
+        <div class="flex-container">
+          <mat-form-field>
+            <input matInput placeholder="Restaurant Location" required formControlName="restaurantLocation">
+          </mat-form-field>
+        </div>
+        <div align=end>
+          <button mat-icon-button matStepperPrevious matTooltip="Previous">
+            <mat-icon svgIcon="upward"> </mat-icon>
+          </button>
+          <button mat-icon-button matStepperNext matTooltip="Next">
+            <mat-icon svgIcon="downward"></mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="restaurantCategoryDetails">
+      <form [formGroup]="restaurantCategoryDetails">
+        <ng-template matStepLabel>Category and Expense</ng-template>
+        <div class="flex-container">
+        <mat-form-field>
+          <input matInput placeholder="Restaurant Category" required formControlName="restaurantCategory" matTooltip="Enter the category and type of restaurant Example : Indian Fine Dine">
         </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>Location</ng-template>
-          <input matInput placeholder="Restaurant Location" formControlName="secondCtrl" required>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      Apple3
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
+        <mat-form-field>
+          <span matPrefix>€ &nbsp;</span>
+          <input matInput placeholder="Restaurant Expense" required formControlName="restaurantExpense" matTooltip="Average expense for two people">
+        </mat-form-field>
       </div>
+      <div align = end>
+        <button mat-icon-button matStepperPrevious matTooltip="Previous">
+          <mat-icon svgIcon="upward"></mat-icon>
+        </button>
+      </div>
+      </form>
     </mat-step>
-  </mat-horizontal-stepper>
+
+  </mat-vertical-stepper>
 </div>
-<div mat-dialog-actions>
-  <button mat-stroked-button (click)="onNoClick()">No Thanks</button> &nbsp;
-  <button mat-stroked-button color="warn" (click)="onClickChange(data.restaurant)">Change</button>
-</div>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>No Thanks</button>
+  <button mat-button (click)="addRestaurant()" type="submit">Change</button>
+</mat-dialog-actions>

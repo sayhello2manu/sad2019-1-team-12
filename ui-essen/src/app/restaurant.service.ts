@@ -15,10 +15,10 @@ export class RestaurantService {
   public HOSTNAME = '//192.168.178.108'
 
   public PORT = '8080'
-  public URL = this.HOSTNAME + ':' + this.PORT + '/restaurant/';
+  public URL = this.HOSTNAME + ':' + this.PORT + '/restaurants/';
 
   getAllRestaurants() {
-    return this.http.get<Array<RestaurantModel>>(this.URL + 'all');
+    return this.http.get<Array<RestaurantModel>>(this.URL);
   }
 
   getRestaurant(restaurnatId: string) {
@@ -26,19 +26,33 @@ export class RestaurantService {
   }
 
   save(restaurant: RestaurantModel): Observable<RestaurantModel> {
-    console.log("calling Save " + restaurant.restaurantId);
     let result: Observable<RestaurantModel>;
     if (restaurant.restaurantId != null) {
       console.log("calling service" + restaurant);
-      result = this.http.put<RestaurantModel>(this.URL + 'edit/' + restaurant.restaurantId, restaurant);
+      result = this.http.put<RestaurantModel>(this.URL + restaurant.restaurantId, restaurant);
     } else {
-      result = this.http.post<RestaurantModel>(this.URL + 'create', restaurant);
+      result = this.http.post<RestaurantModel>(this.URL, restaurant);
     }
     return result;
   }
 
   delete(restaurant: RestaurantModel) {
-    return this.http.delete(this.URL + 'delete/' + restaurant.$restaurantId);
+    return this.http.delete(this.URL + restaurant.restaurantId);
   }
+
+  getRestaurantLocaions(): Observable<Array<String>> {
+    return this.http.get<Array<String>>(this.URL + 'locations');
+  }
+
+  searchRestaurants(searchStringFromUI: string, locationFromUI: string): Observable<Array<RestaurantModel>> {
+    return this.http.get<Array<RestaurantModel>>(this.URL, {
+      params: {
+        searchString: searchStringFromUI,
+        location: locationFromUI
+      }
+    });
+  }
+
+
 }
 

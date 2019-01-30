@@ -14,23 +14,23 @@ import lombok.Setter;
 @Setter
 
 @Entity
-@Table(name= "restaurants")
+@Table(name = "restaurants")
 public class RestaurantModel {
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name= "Restaurant_ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "Restaurant_ID")
 	private int restaurantId;
-	@Column(name= "Restaurant_Name")
+	@Column(name = "Restaurant_Name")
 	private String restaurantName;
-	@Column(name= "Restaurant_Location")
+	@Column(name = "Restaurant_Location")
 	private String restaurantLocation;
-	@Column(name= "Restaurant_Category")
+	@Column(name = "Restaurant_Category")
 	private String restaurantCategory;
-	@Column(name= "Restaurant_Address")
+	@Column(name = "Restaurant_Address")
 	private String restaurantAddress;
-	@Column(name= "Restaurant_Contact_No")
+	@Column(name = "Restaurant_Contact_No")
 	private String restaurantContactNo;
-	@Column(name= "Restaurant_Expense")
+	@Column(name = "Restaurant_Expense")
 	private int restaurantExpense;
-	
+
 }
