@@ -14,8 +14,9 @@ import { RestaurantAddComponent } from '../restaurant-add/restaurant-add.compone
   styleUrls: ['./restaurant-home.component.css', './restaurant-home.component.scss']
 })
 export class RestaurantHomeComponent implements OnInit {
-  public showSearchBar = true;
-  public searchResultsVisible = false;
+  public searchBarVisible = true;
+  public restaurantsListVisible = false;
+  public skipSearchButtonVisible = true;
   restaurants: Array<RestaurantModel>;
   public locations: Array<String>;
 
@@ -27,8 +28,8 @@ export class RestaurantHomeComponent implements OnInit {
     sanitizer: DomSanitizer
   ) {
     iconRegistry.
-        addSvgIcon('edit',sanitizer.bypassSecurityTrustResourceUrl('assets/baseline-edit-24px.svg')).
-        addSvgIcon('add', sanitizer.bypassSecurityTrustResourceUrl('assets/round-add-24px.svg'))
+      addSvgIcon('edit', sanitizer.bypassSecurityTrustResourceUrl('assets/baseline-edit-24px.svg')).
+      addSvgIcon('add', sanitizer.bypassSecurityTrustResourceUrl('assets/round-add-24px.svg'))
   }
 
   searchForm = this.searchFormBuilder.group({
@@ -43,18 +44,35 @@ export class RestaurantHomeComponent implements OnInit {
   }
 
   onClickSearch() {
-    this.showSearchBar = false;
-    this.searchResultsVisible = true; // If 200 Response the true or false 
+    this.searchBarVisible = false;
+    this.restaurantsListVisible = true;
+    this.skipSearchButtonVisible = true;
     this.restaurantService.searchRestaurants(this.searchForm.value.searchString, this.searchForm.value.selectedLocation).subscribe((data: RestaurantModel[]) => {
       this.restaurants = data;
       console.log(this.restaurants)
     });
     console.log("on click search !!!!!!")
-    
+
   }
-  
+
+  skipSearchRestaurants(): void {
+    this.restaurants = null;
+    this.restaurantService.getAllRestaurants().subscribe((data: RestaurantModel[]) => {
+      this.restaurants = data;
+    });
+    this.restaurantsListVisible = true;
+    this.searchBarVisible = false;
+    this.skipSearchButtonVisible = false;
+  }
+
+  showSearchBar() : void {
+    this.searchBarVisible = true;
+    this.restaurantsListVisible = false;
+    this.skipSearchButtonVisible = true;
+  }
+
   openDialogEditRestaurant(restaurant: RestaurantModel): void {
-    let demo : RestaurantModel = Object.create(restaurant);
+    let demo: RestaurantModel = Object.create(restaurant);
     const dialogRef = this.dialog.open(RestaurantEditComponent, {
       width: '250px',
       data: { demo },

@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
 import { RestaurantEditComponent } from './restaurant-edit/restaurant-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
@@ -15,7 +14,6 @@ import { RestaurantHomeComponent } from './restaurant-home/restaurant-home.compo
 @NgModule({
   declarations: [
     AppComponent,
-    RestaurantComponent,
     RestaurantEditComponent,
     RestaurantAddComponent,
     RestaurantHomeComponent,

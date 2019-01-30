@@ -1,4 +1,4 @@
-<div *ngIf="showSearchBar">
+<div *ngIf="searchBarVisible">
   <mat-toolbar>
     Search For A Restaurant Here
   </mat-toolbar>
@@ -21,7 +21,7 @@
   </div>
 </div>
 
-<div *ngIf="searchResultsVisible">
+<div *ngIf="restaurantsListVisible">
   <mat-toolbar>
     <span>Restaurant List</span>
   </mat-toolbar>
@@ -68,6 +68,11 @@
   </div>
 </div>
 
-<div align=end class="search-area form">
-  <a routerLink="/restaurant" button mat-button> Click Here To Skip Search</a>
-</div>
+<!-- <div align=end class="search-area form"> -->
+  <div *ngIf="!searchBarVisible">
+    <button mat-button (click)="showSearchBar()"> Click here to Search</button>
+  </div>
+  <div *ngIf="skipSearchButtonVisible">
+    <button mat-button (click)="skipSearchRestaurants()"> Trending Restaurants</button>
+  </div>
+<!-- </div> -->
