@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RestaurantAddComponent } from './restaurant-add/restaurant-add.component';
 
 @Component({
   selector: 'app-root',

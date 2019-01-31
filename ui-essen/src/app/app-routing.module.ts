@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RestaurantHomeComponent } from './restaurant-home/restaurant-home.component';
+import { RestaurantHomeComponent } from './restaurants/restaurant-home/restaurant-home.component';
 const routes: Routes = [
   {
     path: '',
