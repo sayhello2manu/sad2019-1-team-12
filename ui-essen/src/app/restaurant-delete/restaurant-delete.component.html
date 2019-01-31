@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Delete Restaurant</h1>
+
+<div mat-dialog-content class="flex-container">
+  <p> Are You sure you want to delete {{data.restaurant.restaurantName}} </p>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button (click)="onNoClick()">No Thanks</button> &nbsp;
+  <button mat-stroked-button color="warn" (click)="onClickDelete(data.restaurant.restaurantId)">Delete</button>
+
+</div>
