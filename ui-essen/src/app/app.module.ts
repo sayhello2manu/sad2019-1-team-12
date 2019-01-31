@@ -10,6 +10,7 @@ import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { MaterialModule } from '../material-module';
 import { RestaurantAddComponent } from './restaurant-add/restaurant-add.component';
 import { RestaurantHomeComponent } from './restaurant-home/restaurant-home.component';
+import { RestaurantDeleteComponent } from './restaurant-delete/restaurant-delete.component';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,9 @@ import { RestaurantHomeComponent } from './restaurant-home/restaurant-home.compo
     RestaurantEditComponent,
     RestaurantAddComponent,
     RestaurantHomeComponent,
+    RestaurantDeleteComponent,
   ],
-  entryComponents: [RestaurantEditComponent, RestaurantAddComponent],
+  entryComponents: [RestaurantEditComponent, RestaurantAddComponent, RestaurantDeleteComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

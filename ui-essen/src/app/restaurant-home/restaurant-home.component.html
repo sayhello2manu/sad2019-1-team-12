@@ -57,6 +57,11 @@
       <a mat-icon-button (click)="openDialogEditRestaurant(restaurant)" matTooltip="Edit">
         <mat-icon svgIcon="edit"></mat-icon>
       </a>
+      &nbsp; &nbsp; &nbsp; &nbsp;
+      <button mat-icon-button matTooltip="Delete Restaurant" (click)="openDialogDeleteRestaurant(restaurant)"
+        matTooltipPosition="after">Delete
+        <!-- <mat-icon svgIcon="add"></mat-icon> -->
+      </button>
     </mat-card-actions>
   </mat-card>
 
@@ -69,10 +74,10 @@
 </div>
 
 <!-- <div align=end class="search-area form"> -->
-  <div *ngIf="!searchBarVisible">
-    <button mat-button (click)="showSearchBar()"> Click here to Search</button>
-  </div>
-  <div *ngIf="skipSearchButtonVisible">
-    <button mat-button (click)="skipSearchRestaurants()"> Trending Restaurants</button>
-  </div>
+<div *ngIf="!searchBarVisible">
+  <button mat-button (click)="showSearchBar()"> Click here to Search</button>
+</div>
+<div *ngIf="skipSearchButtonVisible">
+  <button mat-button (click)="skipSearchRestaurants()"> Trending Restaurants</button>
+</div>
 <!-- </div> -->

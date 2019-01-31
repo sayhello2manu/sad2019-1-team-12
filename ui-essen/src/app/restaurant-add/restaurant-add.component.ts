@@ -6,8 +6,6 @@ import { RestaurantModel } from '../restaurant.model'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FormsModule, NgForm } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-restaurant-add',
@@ -28,8 +26,8 @@ export class RestaurantAddComponent implements OnInit {
     sanitizer: DomSanitizer,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     iconRegistry.
-      addSvgIcon('downward', sanitizer.bypassSecurityTrustResourceUrl('assets/down-arrow final.svg')).
-      addSvgIcon('upward', sanitizer.bypassSecurityTrustResourceUrl('assets/up-arrow final.svg'))
+      addSvgIcon('downward', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/down-arrow final.svg')).
+      addSvgIcon('upward', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/up-arrow final.svg'))
   }
 
   isLinear = false;

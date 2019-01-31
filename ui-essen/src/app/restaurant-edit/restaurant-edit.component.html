@@ -1,11 +1,25 @@
 <h1 mat-dialog-title>Edit Restaurant</h1>
 
-<div mat-dialog-content>
+<div mat-dialog-content class="flex-container">
     <mat-form-field>
         <input matInput [(ngModel)]="data.demo.restaurantName" placeholder="Restaurant Name">
     </mat-form-field>
     <mat-form-field>
+        <input matInput [(ngModel)]="data.demo.restaurantContactNo" placeholder="Restaurant Location">
+        <span matPrefix>+49&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput [(ngModel)]="data.demo.restaurantContactNo" placeholder="Address"></textarea>
+    </mat-form-field>
+    <mat-form-field>
         <input matInput [(ngModel)]="data.demo.restaurantLocation" placeholder="Restaurant Location">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.demo.restaurantCategory" placeholder="Restaurant Category">
+    </mat-form-field>
+    <mat-form-field>
+        <span matPrefix>€ &nbsp;</span>
+        <input matInput [(ngModel)]="data.demo.restaurantExpense" placeholder="Restaurant Expense">
     </mat-form-field>
 
 </div>

@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/';
 import { RestaurantEditComponent } from '../restaurant-edit/restaurant-edit.component'
 import { RestaurantAddComponent } from '../restaurant-add/restaurant-add.component'
+import { RestaurantDeleteComponent } from '../restaurant-delete/restaurant-delete.component'
 
 @Component({
   selector: 'app-restaurant-home',
@@ -28,8 +29,8 @@ export class RestaurantHomeComponent implements OnInit {
     sanitizer: DomSanitizer
   ) {
     iconRegistry.
-      addSvgIcon('edit', sanitizer.bypassSecurityTrustResourceUrl('assets/baseline-edit-24px.svg')).
-      addSvgIcon('add', sanitizer.bypassSecurityTrustResourceUrl('assets/round-add-24px.svg'))
+      addSvgIcon('edit', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/baseline-edit-24px.svg')).
+      addSvgIcon('add', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/round-add-24px.svg'))
   }
 
   searchForm = this.searchFormBuilder.group({
@@ -65,7 +66,7 @@ export class RestaurantHomeComponent implements OnInit {
     this.skipSearchButtonVisible = false;
   }
 
-  showSearchBar() : void {
+  showSearchBar(): void {
     this.searchBarVisible = true;
     this.restaurantsListVisible = false;
     this.skipSearchButtonVisible = true;
@@ -74,7 +75,7 @@ export class RestaurantHomeComponent implements OnInit {
   openDialogEditRestaurant(restaurant: RestaurantModel): void {
     let demo: RestaurantModel = Object.create(restaurant);
     const dialogRef = this.dialog.open(RestaurantEditComponent, {
-      width: '250px',
+      width: '600px',
       data: { demo },
       hasBackdrop: true,
 
@@ -85,9 +86,20 @@ export class RestaurantHomeComponent implements OnInit {
     });
   }
 
-  openDialogAddRestaurant(restaurant: RestaurantModel): void {
-
+  openDialogAddRestaurant(): void {
     const dialogRef = this.dialog.open(RestaurantAddComponent, {
+      width: '600px',
+      hasBackdrop: true,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openDialogDeleteRestaurant(restaurant: RestaurantModel): void {
+
+    const dialogRef = this.dialog.open(RestaurantDeleteComponent, {
       width: '600px',
       data: { restaurant },
       hasBackdrop: true,
