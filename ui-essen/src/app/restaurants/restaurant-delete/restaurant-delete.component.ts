@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/';
 import { NgModule } from '@angular/core';
-import { RestaurantService } from '../restaurant.service';
-import { RestaurantModel } from '../restaurant.model'
+import { RestaurantService } from '../restaurant-service/restaurant.service';
+import { RestaurantModel } from '../restaurant-model/restaurant.model'
 
 @Component({
   selector: 'app-restaurant-delete',

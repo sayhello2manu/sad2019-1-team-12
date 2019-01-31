@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/';
 import { NgModule } from '@angular/core';
-import { RestaurantService } from '../restaurant.service';
-import { RestaurantModel } from '../restaurant.model'
+import { RestaurantService } from '../restaurant-service/restaurant.service';
+import { RestaurantModel } from '../restaurant-model/restaurant.model'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';

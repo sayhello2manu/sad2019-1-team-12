@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService } from '../restaurant.service';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { RestaurantModel } from '../restaurant.model'
+import { RestaurantService } from '../restaurant-service/restaurant.service';
+import { FormControl, FormBuilder, Validators } from '@angular/forms';
+import { RestaurantModel } from '../restaurant-model/restaurant.model'
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/';
