@@ -18,6 +18,7 @@ export class RestaurantHomeComponent implements OnInit {
   public searchBarVisible = true;
   public restaurantsListVisible = false;
   public skipSearchButtonVisible = true;
+  public searchRestaurantActive = false;
   restaurants: Array<RestaurantModel>;
   public locations: Array<String>;
 
@@ -30,7 +31,9 @@ export class RestaurantHomeComponent implements OnInit {
   ) {
     iconRegistry.
       addSvgIcon('edit', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/baseline-edit-24px.svg')).
-      addSvgIcon('add', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/round-add-24px.svg'))
+      addSvgIcon('add', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/round-add-24px.svg')).
+      addSvgIcon('search', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/search-icon.svg')).
+      addSvgIcon('delete', sanitizer.bypassSecurityTrustResourceUrl('assets/icons/delete-icon.svg'))
   }
 
   searchForm = this.searchFormBuilder.group({
@@ -48,6 +51,7 @@ export class RestaurantHomeComponent implements OnInit {
     this.searchBarVisible = false;
     this.restaurantsListVisible = true;
     this.skipSearchButtonVisible = true;
+    this.searchRestaurantActive = true;
     this.restaurantService.searchRestaurants(this.searchForm.value.searchString, this.searchForm.value.selectedLocation).subscribe((data: RestaurantModel[]) => {
       this.restaurants = data;
       console.log(this.restaurants)
@@ -64,6 +68,7 @@ export class RestaurantHomeComponent implements OnInit {
     this.restaurantsListVisible = true;
     this.searchBarVisible = false;
     this.skipSearchButtonVisible = false;
+    this.searchRestaurantActive = false;
   }
 
   showSearchBar(): void {
@@ -82,6 +87,7 @@ export class RestaurantHomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.refreshListOfRestaurantsFromBackend();
       console.log('The dialog was closed');
     });
   }
@@ -93,6 +99,7 @@ export class RestaurantHomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.refreshListOfRestaurantsFromBackend();
       console.log('The dialog was closed');
     });
   }
@@ -107,7 +114,22 @@ export class RestaurantHomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.refreshListOfRestaurantsFromBackend();
       console.log('The dialog was closed');
     });
+  }
+
+
+  refreshListOfRestaurantsFromBackend(): void {
+    if (this.searchRestaurantActive) {
+      this.restaurantService.searchRestaurants(this.searchForm.value.searchString, this.searchForm.value.selectedLocation).subscribe((data: RestaurantModel[]) => {
+        this.restaurants = data;
+        console.log(this.restaurants)
+      });
+    } else {
+      this.restaurantService.getAllRestaurants().subscribe((data: RestaurantModel[]) => {
+        this.restaurants = data;
+      });
+    }
   }
 }

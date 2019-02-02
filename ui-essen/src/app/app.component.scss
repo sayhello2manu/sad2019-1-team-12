@@ -3,29 +3,28 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    font-size: larger;
   }
   .toolbar-height{
     height:250px;
   }
   .header {
-    overflow: hidden;
-    padding: 20px 10px;
+    flex: 0.50
   }
-  .header h1 {
-    float: left;
-    color: black;
-    text-align: center;
-    padding: 12px;
-    text-decoration: none;
-    // font-size: larger; 
-    line-height: 25px;
-    border-radius: 4px;
+  .header h1{
+    font-size: 60px;
   }
 
   @media screen and (max-width: 500px) {
     .header h1{
-      float: none;
-      display: block;
-      text-align: left;
+      font-size: 20px;
+    }
+    .header {
+      flex: 0.70
+    }
+    .toolbar-height{
+      height:150px;
     }
   }
