@@ -20,28 +20,35 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	@Override
 	public ResponseEntity<List<RestaurantModel>> getTrendingRestaurants() {
+
 		List<RestaurantModel> listOfRestaurants = (List<RestaurantModel>) restaurantRepository.findAll();
 		listOfRestaurants.stream().limit(10);
 		
-		return new ResponseEntity<>(listOfRestaurants, HttpStatus.OK);
+		if (listOfRestaurants.isEmpty())
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		else
+			return new ResponseEntity<>(listOfRestaurants, HttpStatus.OK);
 	}
 
 	@Override
 	public ResponseEntity<RestaurantModel> getRestaurant(int restaurantId) {
-		// TODO Auto-generated method stub
-		return null;
+
+		if (restaurantRepository.findById(restaurantId).isPresent())
+			return new ResponseEntity<>(restaurantRepository.findById(restaurantId).get(), HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@Override
-	public ResponseEntity<RestaurantModel> editRestaurantDetails(int restaurantId) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity<RestaurantModel> editRestaurantDetails(RestaurantModel restaurantModel) {
+		restaurantRepository.save(restaurantModel);
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 
 	@Override
 	public ResponseEntity<Void> createRestaurant(RestaurantModel restaurantModel) {
-		// TODO Auto-generated method stub
-		return null;
+		restaurantRepository.save(restaurantModel);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@Override

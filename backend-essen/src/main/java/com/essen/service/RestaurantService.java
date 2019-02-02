@@ -1,6 +1,7 @@
 package com.essen.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 
@@ -12,8 +13,6 @@ public interface RestaurantService {
 
 	public ResponseEntity<RestaurantModel> getRestaurant(int restaurantId);
 
-	public ResponseEntity<RestaurantModel> editRestaurantDetails(int restaurantId);
-
 	public ResponseEntity<Void> createRestaurant(RestaurantModel restaurantModel);
 
 	public ResponseEntity<RestaurantModel> deleteRestaurant(int restaurantId);
@@ -21,5 +20,7 @@ public interface RestaurantService {
 	public ResponseEntity<List<String>> getLocations();
 
 	public ResponseEntity<List<RestaurantModel>> searchRestaurant(String location, String searchString);
+
+	ResponseEntity<RestaurantModel> editRestaurantDetails(RestaurantModel restaurantModel);
 
 }

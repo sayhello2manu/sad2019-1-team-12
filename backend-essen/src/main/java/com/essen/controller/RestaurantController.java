@@ -35,44 +35,27 @@ public class RestaurantController {
 	}
 
 	@GetMapping("/{restaurantId}")
-	public RestaurantModel getRestaurantFromId(@PathVariable String restaurantId) {
-		List<RestaurantModel> list = new ArrayList<>();
+	public ResponseEntity<RestaurantModel> getRestaurantFromId(@PathVariable int restaurantId) {
+		return restaurantService.getRestaurant(restaurantId);
 
-		RestaurantModel model = new RestaurantModel();
-		model.setRestaurantId(11);
-		model.setRestaurantLocation("Heidelberg");
-		model.setRestaurantName("Raja Rani");
-		model.setRestaurantAddress("Prof. Kehrer Str 9");
-		model.setRestaurantContactNo("31232323");
-		model.setRestaurantCategory("Indian Fine Dine");
-		model.setRestaurantExpense(50);
-		list.add(model);
-
-		return model;
 	}
 
 	@PutMapping("/{restaurantId}")
-	public RestaurantModel editRestaurantDetails(@PathVariable String restaurantId,
+	public ResponseEntity<RestaurantModel> editRestaurantDetails(@PathVariable int restaurantId,
 			@RequestBody RestaurantModel restaurantModel) {
-		RestaurantModel model = new RestaurantModel();
-		model.setRestaurantId(11);
-		model.setRestaurantLocation("Heidelberg");
-		model.setRestaurantName("Raja Rani");
-		model.setRestaurantAddress("Prof. Kehrer Str 9");
-		model.setRestaurantContactNo("31232323");
-		model.setRestaurantCategory("Indian Fine Dine");
-		model.setRestaurantExpense(50);
-
-		return model;
+		restaurantModel.setRestaurantId(restaurantId);
+		return restaurantService.editRestaurantDetails(restaurantModel);
 	}
 
 	@PostMapping("/")
-	public RestaurantModel createRestaurant(@RequestBody RestaurantModel restaurantModel) {
-		return restaurantModel;
+	public ResponseEntity<Void> createRestaurant(@RequestBody RestaurantModel restaurantModel) {
+		return restaurantService.createRestaurant(restaurantModel);
+		
 	}
 
 	@DeleteMapping("/{restaurantId}")
-	public void deleteRestaurant(@PathVariable int restaurantId) {
+	public ResponseEntity<RestaurantModel> deleteRestaurant(@PathVariable int restaurantId) {
+		return restaurantService.deleteRestaurant(restaurantId);
 	}
 
 	@GetMapping("/locations")
