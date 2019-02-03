@@ -70,5 +70,5 @@
 <mat-divider></mat-divider>
 <mat-dialog-actions align="end">
   <button mat-button (click)="onNoClick()" cdkFocusInitial>No Thanks</button>
-  <button mat-button (click)="addRestaurant()" type="submit">Change</button>
+  <button mat-button (click)="addRestaurant()" [disabled]="!restaurantCategoryDetails.valid" type="submit">Add</button>
 </mat-dialog-actions>

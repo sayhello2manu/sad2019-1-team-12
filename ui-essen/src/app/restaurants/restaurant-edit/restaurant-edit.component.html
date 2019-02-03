@@ -1,30 +1,29 @@
 <h1 mat-dialog-title>Edit Restaurant</h1>
-
+<form [formGroup]="editForm" (ngSubmit)="onClickChange()">
 <div mat-dialog-content class="flex-container">
     <mat-form-field>
-        <input matInput [(ngModel)]="data.demo.restaurantName" placeholder="Restaurant Name">
+        <input matInput [(ngModel)]="data.demo.restaurantName" placeholder="Restaurant Name" formControlName="restaurantName">
     </mat-form-field>
     <mat-form-field>
-        <input matInput [(ngModel)]="data.demo.restaurantContactNo" placeholder="Restaurant Location">
+        <input matInput [(ngModel)]="data.demo.restaurantContactNo" placeholder="Restaurant Contact" formControlName="restaurantContactNo">
         <span matPrefix>+49&nbsp;</span>
     </mat-form-field>
     <mat-form-field>
-        <textarea matInput [(ngModel)]="data.demo.restaurantContactNo" placeholder="Address"></textarea>
+        <textarea matInput [(ngModel)]="data.demo.restaurantAddress" placeholder="Address" formControlName="restaurantAddress"></textarea>
     </mat-form-field>
     <mat-form-field>
-        <input matInput [(ngModel)]="data.demo.restaurantLocation" placeholder="Restaurant Location">
+        <input matInput [(ngModel)]="data.demo.restaurantLocation" placeholder="Restaurant Location" formControlName="restaurantLocation">
     </mat-form-field>
     <mat-form-field>
-        <input matInput [(ngModel)]="data.demo.restaurantCategory" placeholder="Restaurant Category">
+        <input matInput [(ngModel)]="data.demo.restaurantCategory" placeholder="Restaurant Category" formControlName="restaurantCategory">
     </mat-form-field>
     <mat-form-field>
         <span matPrefix>€ &nbsp;</span>
-        <input matInput [(ngModel)]="data.demo.restaurantExpense" placeholder="Restaurant Expense">
+        <input matInput [(ngModel)]="data.demo.restaurantExpense" placeholder="Restaurant Expense" formControlName="restaurantExpense">
     </mat-form-field>
-
 </div>
 <div mat-dialog-actions>
     <button mat-stroked-button (click)="onNoClick()">No Thanks</button> &nbsp;
-    <button mat-stroked-button color="warn" (click)="onClickChange(data.demo)">Change</button>
-
+    <button mat-stroked-button color="warn" type="submit">Change</button>
 </div>
+</form>

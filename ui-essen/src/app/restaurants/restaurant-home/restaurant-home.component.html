@@ -1,6 +1,13 @@
 <div *ngIf="searchBarVisible">
   <mat-toolbar>
-    Search For A Restaurant Here
+    <mat-toolbar-row>
+      <span>Search Restaurant</span>
+      <span class="spacer"></span>
+      <span *ngIf="skipSearchButtonVisible">
+        <button mat-raised-button color="primary" (click)="skipSearchRestaurants()" matTooltip="Click Here to skip search and Browse Top 10 Trending restaurants"
+          matTooltipPosition="after">Trending</button>
+      </span>
+    </mat-toolbar-row>
   </mat-toolbar>
   <div class="search-area">
     <form [formGroup]="searchForm" (ngSubmit)="onClickSearch()" class="form">
@@ -24,6 +31,18 @@
 <div *ngIf="restaurantsListVisible">
   <mat-toolbar>
     <span>Restaurant List</span>
+    <span class="spacer"></span>
+    <span *ngIf="!searchBarVisible">
+      <button mat-button (click)="showSearchBar()" color="primary" matTooltip="Click Here Search" matTooltipPosition="after">
+        <mat-icon svgIcon="search"></mat-icon>
+      </button>
+    </span>
+    <span>
+      <button mat-icon-button matTooltip="Add Restaurant" (click)="openDialogAddRestaurant(restaurant)"
+        matTooltipPosition="after">
+        <mat-icon svgIcon="add"></mat-icon>
+      </button>
+    </span>
   </mat-toolbar>
 
   <mat-card *ngFor="let restaurant of restaurants" class="card fix-height light-primary-color">
@@ -59,25 +78,15 @@
       </a>
       &nbsp; &nbsp; &nbsp; &nbsp;
       <button mat-icon-button matTooltip="Delete Restaurant" (click)="openDialogDeleteRestaurant(restaurant)"
-        matTooltipPosition="after">Delete
-        <!-- <mat-icon svgIcon="add"></mat-icon> -->
+        matTooltipPosition="after">
+        <mat-icon svgIcon="delete"></mat-icon>
       </button>
     </mat-card-actions>
   </mat-card>
 
-  <div>
-    <button mat-icon-button matTooltip="Add Restaurant" (click)="openDialogAddRestaurant(restaurant)"
-      matTooltipPosition="after">
-      <mat-icon svgIcon="add"></mat-icon>
-    </button>
-  </div>
 </div>
 
 <!-- <div align=end class="search-area form"> -->
-<div *ngIf="!searchBarVisible">
-  <button mat-button (click)="showSearchBar()"> Click here to Search</button>
-</div>
-<div *ngIf="skipSearchButtonVisible">
-  <button mat-button (click)="skipSearchRestaurants()"> Trending Restaurants</button>
-</div>
+
+
 <!-- </div> -->
