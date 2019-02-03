@@ -50,8 +50,8 @@ export class RestaurantAddComponent implements OnInit {
     console.log(this.restaurantCategoryDetails.value.restaurantExpense);
     this.restaurant = {
       restaurantName: this.restaurantBasicDetails.value.restaurantName,
-      restaurantAddress: this.countryCode + this.restaurantBasicDetails.value.restaurantContactNo,
-      restaurantContactNo: this.restaurantBasicDetails.value.restaurantAddress,
+      restaurantAddress: this.restaurantBasicDetails.value.restaurantAddress,
+      restaurantContactNo:  this.countryCode + this.restaurantBasicDetails.value.restaurantContactNo,
       restaurantLocation: this.restaurantLocationDetails.value.restaurantLocation,
       restaurantCategory: this.restaurantCategoryDetails.value.restaurantCategory,
       restaurantExpense: this.restaurantCategoryDetails.value.restaurantExpense

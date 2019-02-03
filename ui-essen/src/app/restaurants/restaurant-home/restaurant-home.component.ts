@@ -75,6 +75,9 @@ export class RestaurantHomeComponent implements OnInit {
     this.searchBarVisible = true;
     this.restaurantsListVisible = false;
     this.skipSearchButtonVisible = true;
+    this.restaurantService.getRestaurantLocaions().subscribe((data: String[]) => {
+      this.locations = data;
+    });
   }
 
   openDialogEditRestaurant(restaurant: RestaurantModel): void {

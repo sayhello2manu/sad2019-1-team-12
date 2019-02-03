@@ -1,8 +1,6 @@
 package com.essen.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +23,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public ResponseEntity<List<RestaurantModel>> getTrendingRestaurants() {
 
 		List<RestaurantModel> listOfRestaurants = (List<RestaurantModel>) restaurantRepository.findAll();
-		listOfRestaurants.stream().limit(10);
-		
 		if (listOfRestaurants.isEmpty())
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		else
-			return new ResponseEntity<>(listOfRestaurants, HttpStatus.OK);
+			return new ResponseEntity<>(listOfRestaurants.stream().limit(10).collect(Collectors.toList()),
+					HttpStatus.OK);
 	}
 
 	@Override
@@ -56,7 +53,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	@Override
 	public ResponseEntity<RestaurantModel> deleteRestaurant(int restaurantId) {
-		
+
 		restaurantRepository.deleteById(restaurantId);
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
@@ -64,12 +61,15 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override
 	public ResponseEntity<List<String>> getLocations() {
 		List<RestaurantModel> listOfRestaurants = (List<RestaurantModel>) restaurantRepository.findAll();
-		List<String> locations = new ArrayList<String>();
-		listOfRestaurants.forEach(restaurant ->{
-			locations.add(restaurant.getRestaurantLocation());
-		});
-		
-		return new ResponseEntity<>(locations.stream().distinct().collect(Collectors.toList()), HttpStatus.OK);
+		List<String> locations = listOfRestaurants.stream().
+				map(RestaurantModel::getRestaurantLocation).
+				collect(Collectors.toList()).
+				stream().
+				distinct().collect(Collectors.toList());
+		if (locations.isEmpty())
+			return new ResponseEntity<>(HttpStatus.OK);
+		else
+			return new ResponseEntity<>(locations, HttpStatus.OK);
 	}
 
 	@Override

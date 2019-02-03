@@ -6,7 +6,7 @@
     </mat-form-field>
     <mat-form-field>
         <input matInput [(ngModel)]="data.demo.restaurantContactNo" placeholder="Restaurant Contact" formControlName="restaurantContactNo">
-        <span matPrefix>+49&nbsp;</span>
+        <!-- <span matPrefix>+49&nbsp;</span> -->
     </mat-form-field>
     <mat-form-field>
         <textarea matInput [(ngModel)]="data.demo.restaurantAddress" placeholder="Address" formControlName="restaurantAddress"></textarea>
@@ -22,8 +22,8 @@
         <input matInput [(ngModel)]="data.demo.restaurantExpense" placeholder="Restaurant Expense" formControlName="restaurantExpense">
     </mat-form-field>
 </div>
+</form>
 <div mat-dialog-actions>
     <button mat-stroked-button (click)="onNoClick()">No Thanks</button> &nbsp;
-    <button mat-stroked-button color="warn" type="submit">Change</button>
+    <button mat-stroked-button (click)="onClickChange()" color="warn" type="submit">Change</button>
 </div>
-</form>

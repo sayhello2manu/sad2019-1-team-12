@@ -39,9 +39,10 @@ export class RestaurantEditComponent {
   onClickChange(): void {
 
     this.restaurant = {
+      restaurantId: this.data.demo.restaurantId,
       restaurantName: this.editForm.value.restaurantName,
       restaurantAddress: this.editForm.value.restaurantAddress, 
-      restaurantContactNo: this.countryCode + this.editForm.value.restaurantContactNo,
+      restaurantContactNo: this.editForm.value.restaurantContactNo,
       restaurantLocation: this.editForm.value.restaurantLocation,
       restaurantCategory: this.editForm.value.restaurantCategory,
       restaurantExpense: this.editForm.value.restaurantExpense

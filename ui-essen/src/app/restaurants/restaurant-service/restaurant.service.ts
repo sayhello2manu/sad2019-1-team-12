@@ -11,8 +11,8 @@ export class RestaurantService {
   constructor(private http: HttpClient) {
   }
 
-  // public HOSTNAME = '//localhost'
-  public HOSTNAME = '//192.168.0.178'
+  public HOSTNAME = '//localhost'
+  // public HOSTNAME = '//192.168.0.178'
 
   public PORT = '8080'
   public URL = this.HOSTNAME + ':' + this.PORT + '/restaurants/';
