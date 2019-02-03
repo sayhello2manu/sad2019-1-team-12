@@ -50,7 +50,7 @@ public class RestaurantController {
 	@PostMapping("/")
 	public ResponseEntity<Void> createRestaurant(@RequestBody RestaurantModel restaurantModel) {
 		return restaurantService.createRestaurant(restaurantModel);
-		
+
 	}
 
 	@DeleteMapping("/{restaurantId}")
@@ -60,14 +60,8 @@ public class RestaurantController {
 
 	@GetMapping("/locations")
 	public ResponseEntity<List<String>> getLocations() {
-		List<String> listOfLocations = new ArrayList<>();
-		listOfLocations.add("Heidelberg HBF");
-		listOfLocations.add("Bismark Platz");
-		listOfLocations.add("Heidelberg Altstad");
-		listOfLocations.add("SRH Campus");
-		// Query to get all the locations as list or set. Should return a unique list
-		// of locations
-		return new ResponseEntity<>(listOfLocations, HttpStatus.OK);
+		
+		return restaurantService.getLocations();
 	}
 
 	@GetMapping(value = "/", params = { "searchString", "location" })

@@ -1,6 +1,9 @@
 package com.essen.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,14 +56,20 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	@Override
 	public ResponseEntity<RestaurantModel> deleteRestaurant(int restaurantId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		restaurantRepository.deleteById(restaurantId);
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 
 	@Override
 	public ResponseEntity<List<String>> getLocations() {
-		// TODO Auto-generated method stub
-		return null;
+		List<RestaurantModel> listOfRestaurants = (List<RestaurantModel>) restaurantRepository.findAll();
+		List<String> locations = new ArrayList<String>();
+		listOfRestaurants.forEach(restaurant ->{
+			locations.add(restaurant.getRestaurantLocation());
+		});
+		
+		return new ResponseEntity<>(locations.stream().distinct().collect(Collectors.toList()), HttpStatus.OK);
 	}
 
 	@Override

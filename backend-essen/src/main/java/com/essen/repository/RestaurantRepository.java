@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.essen.model.RestaurantModel;
 
-public interface RestaurantRepository extends CrudRepository<RestaurantModel, Integer> {
+public interface RestaurantRepository extends CrudRepository<RestaurantModel, Integer>, ExtendedRestaurantRepository { 
 
 }
