@@ -1,6 +1,5 @@
 package com.essen.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,26 +62,7 @@ public class RestaurantController {
 	}
 
 	@GetMapping(value = "/", params = { "searchString", "location" })
-	public List<RestaurantModel> searchRestaurants(@RequestParam String searchString, @RequestParam String location) {
-		List<RestaurantModel> list = new ArrayList<>();
-		RestaurantModel model = new RestaurantModel();
-		model.setRestaurantId(11);
-		model.setRestaurantLocation("Heidelberg");
-		model.setRestaurantName("Raja Rani In SEARCH");
-		model.setRestaurantAddress("Prof. Kehrer Str 9");
-		model.setRestaurantContactNo("31232323");
-		model.setRestaurantCategory("Indian Fine Dine");
-		model.setRestaurantExpense(50);
-		list.add(model);
-		RestaurantModel model1 = new RestaurantModel();
-		model1.setRestaurantId(12);
-		model1.setRestaurantLocation("Bismark Platz SEARCH");
-		model1.setRestaurantName("Arbil");
-		model1.setRestaurantAddress("Berliner Str 10");
-		model1.setRestaurantContactNo("31232323");
-		model1.setRestaurantCategory("Lebanese and Doner");
-		model1.setRestaurantExpense(10);
-		list.add(model1);
-		return list;
+	public ResponseEntity<List<RestaurantModel>> searchRestaurants(@RequestParam String searchString, @RequestParam String location) {
+		return restaurantService.searchRestaurant(location, searchString);
 	}
 }

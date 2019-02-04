@@ -74,8 +74,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	@Override
 	public ResponseEntity<List<RestaurantModel>> searchRestaurant(String location, String searchString) {
-		// TODO Auto-generated method stub
-		return null;
+		List<RestaurantModel> restaurants = restaurantRepository.searchRestaurant(searchString, location);
+		if (restaurants.isEmpty())
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		else
+			return new ResponseEntity<>(restaurants, HttpStatus.OK);
+			
 	}
 
 }

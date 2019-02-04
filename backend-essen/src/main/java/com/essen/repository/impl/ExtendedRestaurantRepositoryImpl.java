@@ -15,40 +15,41 @@ import org.springframework.stereotype.Repository;
 
 import com.essen.model.RestaurantModel;
 import com.essen.repository.ExtendedRestaurantRepository;
+
 @Repository
 public class ExtendedRestaurantRepositoryImpl implements ExtendedRestaurantRepository {
-    @PersistenceContext
-    private EntityManager entityManager;
-    
-    @Transactional
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	@Transactional
 	@Override
 	public List<RestaurantModel> searchRestaurant(String searchString, String location) {
-    	CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<RestaurantModel> criteriaQuery = criteriaBuilder.createQuery(RestaurantModel.class);
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<RestaurantModel> criteriaQuery = criteriaBuilder.createQuery(RestaurantModel.class);
 		Root<RestaurantModel> restaurantsRoot = criteriaQuery.from(RestaurantModel.class);
 		criteriaQuery.select(restaurantsRoot);
-		
-		
+
 		EntityType<RestaurantModel> type = entityManager.getMetamodel().entity(RestaurantModel.class);
-		
+
+		Predicate conditionForRestaurantLocation = criteriaBuilder.equal(restaurantsRoot.get("restaurantLocation"),
+				location.trim());
+
 		Predicate restaurantCategory = criteriaBuilder.like(
-				criteriaBuilder.lower(restaurantsRoot.get(type.getDeclaredSingularAttribute("restaurantCategory", String.class))),"%" + searchString.toLowerCase() + "%");
-		
+				criteriaBuilder.lower(
+						restaurantsRoot.get(type.getDeclaredSingularAttribute("restaurantCategory", String.class))),
+				"%" + searchString.toLowerCase() + "%");
+
 		Predicate restaurantName = criteriaBuilder.like(
-				criteriaBuilder.lower(restaurantsRoot.get(type.getDeclaredSingularAttribute("restaurantName", String.class))),"%" + searchString.toLowerCase() + "%");
-		
-		
-		
-//		criteriaQuery.where(
-//				criteriaBuilder.like(
-//						criteriaBuilder.lower(restaurantsRoot.get(type.getDeclaredSingularAttribute("restaurantCategory", String.class))),"%" + searchString.toLowerCase() + "%"));
-//
-//
-//		List<RestaurantModel> listOfRestaurants = entityManager.createQuery(criteriaQuery).getResultList();
-//		getListOfDiscussionModelFromQuestionsEntity(listOfQuestionsWithGivenCategory);
-        
-		return null;
+				criteriaBuilder
+						.lower(restaurantsRoot.get(type.getDeclaredSingularAttribute("restaurantName", String.class))),
+				"%" + searchString.toLowerCase() + "%");
+
+		Predicate searchInNameAndCategory = criteriaBuilder.or(restaurantCategory, restaurantName);
+		Predicate combined = criteriaBuilder.and(conditionForRestaurantLocation, searchInNameAndCategory);
+
+		criteriaQuery.where(combined);
+
+		return entityManager.createQuery(criteriaQuery).getResultList();
 	}
-	
 
 }
