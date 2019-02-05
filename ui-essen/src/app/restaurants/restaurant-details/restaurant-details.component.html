@@ -1,0 +1,50 @@
+<div>
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <span>{{resturant?.restaurantName}}</span>
+      <span class="spacer"></span>
+      <span>
+        <button mat-button matTooltip="Add Review" (click)="openDialogAddReview()" matTooltipPosition="below">
+          <mat-icon svgIcon="add"></mat-icon>
+          Add
+        </button>
+        &nbsp;
+      </span>
+      <span>
+        <ng-template #t let-fill="fill">
+          <span class="star" [class.full]="fill === 100">
+            <span class="half" [style.width.%]="fill">&#x22C6;</span>&#x22C6;
+          </span>
+        </ng-template>
+        <ngb-rating matTooltip="Average Rating : {{averageRating}}" [(rate)]="averageRating" [starTemplate]="t"
+          [readonly]="true" max="5"></ngb-rating>
+      </span>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-card *ngFor="let review of reviews" class="card fix-height light-primary-color">
+    <mat-card-header>
+      <mat-card-title>{{review?.customerName}}</mat-card-title>
+    </mat-card-header>
+    <hr>
+    <mat-card-content>
+      <mat-card-subtitle>
+        Rating :
+        <ngb-rating [(rate)]="review.rating" [readonly]="true" max="5"></ngb-rating>
+      </mat-card-subtitle>
+      <div><strong>Feedback </strong>: {{review.feedback}}</div>
+    </mat-card-content>
+    <mat-card-actions>
+      <!-- <button mat-button>Review</button> -->
+      <!-- <a mat-icon-button (click)="openDialogEditRestaurant(restaurant)" matTooltip="Edit">
+        <mat-icon svgIcon="edit"></mat-icon>
+      </a>
+      <button mat-icon-button matTooltip="Delete Restaurant" (click)="openDialogDeleteRestaurant(restaurant)"
+        matTooltipPosition="after">
+        <mat-icon svgIcon="delete"></mat-icon>
+      </button> -->
+    </mat-card-actions>
+  </mat-card>
+  <hr>
+  <a mat-raised-button color="primary" class="card full-width " [routerLink]="['/restaurant-home/']">Homepage</a>
+</div>

@@ -35,12 +35,14 @@
     <span *ngIf="!searchBarVisible">
       <button mat-button (click)="showSearchBar()" color="primary" matTooltip="Click Here Search" matTooltipPosition="after">
         <mat-icon svgIcon="search"></mat-icon>
+        Search
       </button>
     </span>
     <span>
-      <button mat-icon-button matTooltip="Add Restaurant" (click)="openDialogAddRestaurant(restaurant)"
+      <button mat-button matTooltip="Add Restaurant" (click)="openDialogAddRestaurant(restaurant)"
         matTooltipPosition="after">
         <mat-icon svgIcon="add"></mat-icon>
+        Add
       </button>
     </span>
   </mat-toolbar>
@@ -48,7 +50,7 @@
   <mat-card *ngFor="let restaurant of restaurants" class="card fix-height light-primary-color">
 
     <mat-card-header>
-      <mat-card-title>{{restaurant.restaurantName}}</mat-card-title>
+      <mat-card-title><a [routerLink]="['/restaurant-details/', restaurant.restaurantId]">{{restaurant.restaurantName}}</a></mat-card-title>
       <mat-card-subtitle>{{restaurant.restaurantLocation}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>

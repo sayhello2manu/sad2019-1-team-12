@@ -21,7 +21,7 @@ export class RestaurantService {
     return this.http.get<Array<RestaurantModel>>(this.URL);
   }
 
-  getRestaurant(restaurnatId: string) {
+  getRestaurant(restaurnatId: number) : Observable<RestaurantModel> {
     return this.http.get<RestaurantModel>(this.URL + restaurnatId);
   }
 

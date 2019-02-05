@@ -1,0 +1,17 @@
+<h1 mat-dialog-title><strong>Add Review</strong></h1>
+<hr>
+<form [formGroup]="addReviewForm" (ngSubmit)="onClickAdd()">
+    <div mat-dialog-content class="flex-container">
+        <mat-form-field>
+            <input matInput placeholder="Costumer Name" formControlName="costumerName" required>
+        </mat-form-field>
+        Rating <ngb-rating mat-tooltip=addReviewForm.value.rating mat-input formControlName="rating" max="5" required></ngb-rating>
+        <mat-form-field>
+            <textarea matInput placeholder="Feedback" formControlName="feedback" required></textarea>
+        </mat-form-field>
+    </div>
+</form>
+<div mat-dialog-actions align="end">
+    <button mat-stroked-button (click)="onNoClick()">No Thanks</button> &nbsp;
+    <button mat-stroked-button (click)="onClickAdd()" color="warn" type="submit" [disabled]="!addReviewForm.valid">Add</button>
+</div>

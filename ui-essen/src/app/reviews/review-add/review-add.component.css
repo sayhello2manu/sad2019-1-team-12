@@ -1,0 +1,13 @@
+::ng-deep .mat-input-wrapper{
+    width:64%;
+  }
+
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .flex-container > * {
+    width: 100%;
+  }
+  
