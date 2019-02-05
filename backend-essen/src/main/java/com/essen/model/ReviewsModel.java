@@ -24,9 +24,9 @@ public class ReviewsModel {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name= "Review_ID")
-	private int reviewID;
+	private int reviewId;
 	@Column(name= "Restaurant_ID")
-	private int restaurantID;
+	private int restaurantId;
 	@Column(name= "Customer_Name")
 	private String customerName;
 	@Column(name= "Feedback")

@@ -3,6 +3,7 @@ package com.essen.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,22 +23,26 @@ import com.essen.service.ReviewService;
 public class ReviewController {
 	@Autowired
 	ReviewService reviewsService;
-	
+
 	@GetMapping("/{restaurantId}")
 	public ResponseEntity<List<ReviewsModel>> getReview(@PathVariable int restaurantId) {
 		return reviewsService.getRestaurantReviews(restaurantId);
 
 	}
-	
+
 	@PostMapping("/")
 	public ResponseEntity<Void> createReview(@RequestBody ReviewsModel reviewModel) {
 		return reviewsService.createRestaurantReviews(reviewModel);
 
 	}
-	
+
 	@DeleteMapping("/{restaurantId}")
-	public ResponseEntity<ReviewsModel> deleteRestaurantReviews(@PathVariable int restaurantId) {
+	public ResponseEntity<Void> deleteRestaurantReviews(@PathVariable int restaurantId) {
 		return reviewsService.deleteRestaurantReviews(restaurantId);
 	}
 
+	@GetMapping("/average/{restaurantId}")
+	public ResponseEntity<Double> getAverageRating(@PathVariable int restaurantId) {
+		return reviewsService.getAverageRating(restaurantId);
+	}
 }

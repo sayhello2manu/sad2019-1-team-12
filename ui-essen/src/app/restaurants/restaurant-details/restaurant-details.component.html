@@ -35,14 +35,12 @@
       <div><strong>Feedback </strong>: {{review.feedback}}</div>
     </mat-card-content>
     <mat-card-actions>
-      <!-- <button mat-button>Review</button> -->
-      <!-- <a mat-icon-button (click)="openDialogEditRestaurant(restaurant)" matTooltip="Edit">
-        <mat-icon svgIcon="edit"></mat-icon>
-      </a>
-      <button mat-icon-button matTooltip="Delete Restaurant" (click)="openDialogDeleteRestaurant(restaurant)"
-        matTooltipPosition="after">
-        <mat-icon svgIcon="delete"></mat-icon>
-      </button> -->
+      <div align="end">
+        <button mat-icon-button matTooltip="Delete Review" (click)="openDialogDeleteReview()"
+          matTooltipPosition="after">
+          <mat-icon svgIcon="delete"></mat-icon>
+        </button>
+      </div>
     </mat-card-actions>
   </mat-card>
   <hr>

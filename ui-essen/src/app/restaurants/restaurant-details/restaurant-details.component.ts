@@ -19,7 +19,7 @@ export class RestaurantDetailsComponent implements OnInit {
   selected = 0;
   hovered = 0;
   readonly = false;
-  averageRating = 4.3;
+  averageRating: number;
   reviews: Array<ReviewModel>;
   resturant: RestaurantModel;
   restaurantId: number;
@@ -45,10 +45,21 @@ export class RestaurantDetailsComponent implements OnInit {
     });
     this.getRestaurantDetailsFromBackend();
     this.getListOfReviewsFromBackend();
+    this.getAverageRatingFromBackend();
   }
 
 
-
+  private getAverageRatingFromBackend(): void {
+    this.reviewService.getAverageRating(this.restaurantId).
+      subscribe(
+        (data: number) => {
+          this.averageRating = data;
+          console.log(data);
+        },
+        error => {
+          console.log("No Results")
+        })
+  }
 
   openDialogAddReview(): void {
     const dialogRef = this.dialog.open(ReviewAddComponent, {
@@ -60,6 +71,7 @@ export class RestaurantDetailsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.getListOfReviewsFromBackend();
+      this.getAverageRatingFromBackend()
       console.log('The dialog of Review ADD was closed');
 
     });
@@ -87,4 +99,7 @@ export class RestaurantDetailsComponent implements OnInit {
       });
   }
 
+
+  openDialogDeleteReview(): void {
+  }
 }
