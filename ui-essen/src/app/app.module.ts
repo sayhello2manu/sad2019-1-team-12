@@ -14,6 +14,7 @@ import { RestaurantDeleteComponent } from './restaurants/restaurant-delete/resta
 import { RestaurantDetailsComponent } from './restaurants/restaurant-details/restaurant-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReviewAddComponent } from './reviews/review-add/review-add.component';
+import { ReviewDeleteComponent } from './reviews/review-delete/review-delete.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +25,9 @@ import { ReviewAddComponent } from './reviews/review-add/review-add.component';
     RestaurantDeleteComponent,
     RestaurantDetailsComponent,
     ReviewAddComponent,
+    ReviewDeleteComponent,
   ],
-  entryComponents: [RestaurantEditComponent, RestaurantAddComponent, RestaurantDeleteComponent, ReviewAddComponent],
+  entryComponents: [RestaurantEditComponent, RestaurantAddComponent, RestaurantDeleteComponent, ReviewAddComponent, ReviewDeleteComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

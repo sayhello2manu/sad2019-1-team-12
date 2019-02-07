@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewService } from '../../reviews/review-service/review-service.service';
-import { Observable } from 'rxjs';
 import { ReviewModel } from '../../reviews/review-model';
 import { RestaurantService } from '../restaurant-service/restaurant.service'
 import { RestaurantModel } from '../restaurant-model/restaurant.model';
@@ -9,6 +8,7 @@ import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/';
 import { ReviewAddComponent } from '../../reviews/review-add/review-add.component'
+import { ReviewDeleteComponent } from 'src/app/reviews/review-delete/review-delete.component';
 
 @Component({
   selector: 'app-restaurant-details',
@@ -77,6 +77,21 @@ export class RestaurantDetailsComponent implements OnInit {
     });
   }
 
+  openDialogDeleteReview(reviewId : number): void {
+    console.log(reviewId);
+    const dialogRef = this.dialog.open(ReviewDeleteComponent, {
+      width: '600px',
+      data: reviewId,
+      hasBackdrop: true,
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getListOfReviewsFromBackend();
+      this.getAverageRatingFromBackend()
+    });
+  }
+
   private getListOfReviewsFromBackend() {
     this.reviewService.getReviews(this.restaurantId).
       subscribe(
@@ -99,7 +114,4 @@ export class RestaurantDetailsComponent implements OnInit {
       });
   }
 
-
-  openDialogDeleteReview(): void {
-  }
 }

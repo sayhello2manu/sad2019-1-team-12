@@ -34,4 +34,8 @@ export class ReviewService {
   getAverageRating(restaurantId: number): Observable<number> {
     return this.http.get<number>(this.URL + this.AVERAGE + restaurantId);
   }
+
+  delete(restaurantId: number) {
+    return this.http.delete(this.URL + restaurantId);;
+  }
 }
